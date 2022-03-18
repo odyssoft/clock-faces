@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src/",
+    "paths": {
+      "src/*": ["src/*"]
+    },
+    "target": "ES6",
+    "lib": ["dom", "dom.iterable", "ES6"],
+    "strict": true,
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "isolatedModules": false,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["node_modules", "build"]
+}
