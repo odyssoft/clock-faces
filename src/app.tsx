@@ -4,6 +4,7 @@ import React from 'react'
 import { Theme } from 'theme'
 import useStyles from './styles'
 import useQueryString from 'hooks/useQueryString'
+import Settings from 'settings'
 
 interface AppTheme extends Theme {
   customBackground?: string
@@ -19,6 +20,7 @@ const App = () => {
 
   return (
     <div className={classes.container}>
+      <Settings />
       <div className={classes.centered}></div>
     </div>
   )
