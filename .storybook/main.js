@@ -5,8 +5,13 @@ module.exports = {
   ],
   addons: [
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
     "@storybook/addon-links",
+    {
+      name: "@storybook/addon-docs",
+      options: {
+        configureJSX: true,
+      },
+    },
   ],
   framework: "@storybook/react",
   typescript: {
