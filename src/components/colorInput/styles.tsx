@@ -5,8 +5,9 @@ import { Theme } from 'theme'
 const useStyles = makeStyles((theme: Theme) => ({
   colorInput: {
     position: 'relative',
-    maxWidth: '250px',
+    maxWidth: '210px',
     boxShadow: 'border-box',
+    margin: '5px',
     // borderCollapse: 'collapse',
     // borderSpacing: '0',
     // color: '#333333',
@@ -31,11 +32,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: 'white',
     overflow: 'hidden',
   },
+  color: {
+    position: 'relative',
+    display: 'block',
+    width: '100%',
+    height: '100%',
+  },
   selectorWrapper: {
     position: 'absolute',
     inset: 'auto auto 0px 0px',
     display: 'inline-block',
     zIndex: 999,
+    // top: '100%',
     background: 'rgba(255, 255, 255, .95)',
     filter:
       'drop-shadow(0px 5px 5px rgba(0,0,0,0.05)) drop-shadow(0 1px 3px rgba(0,0,0,0.1))',
@@ -43,6 +51,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       'drop-shadow(0px 5px 5px rgba(0,0,0,0.05)) drop-shadow(0 1px 3px rgba(0,0,0,0.1))',
     borderRadius: '8px',
     fontSize: '12px',
+    margin: '5px',
   },
   indicator: {
     position: 'absolute',

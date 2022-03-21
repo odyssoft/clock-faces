@@ -56,7 +56,12 @@ const ColorInput = ({ className, label, value, ...rest }: ColorInputProps) => {
             >
               <path d="M8 0h8v8H8zM0 8h8v8H0z" />
             </svg>
-            )
+            {color && (
+              <div
+                className={classes.color}
+                style={{ background: color }}
+              ></div>
+            )}
           </div>
         </div>
         <input
@@ -77,21 +82,21 @@ const ColorInput = ({ className, label, value, ...rest }: ColorInputProps) => {
             ></path>
           </svg>
         )}
-      </div>
-      {isVisible && (
-        <div className={classes.selectorWrapper}>
-          <div className={classes.indicator}></div>
-          <div className={classes.selector} ref={containerRef}>
-            {types[colorType] === 'RGBA' ? (
-              <RgbaColorPicker defaultValue={color} onChange={handleChange} />
-            ) : types[colorType] === 'HSLA' ? (
-              <HslaColorPicker defaultValue={color} onChange={handleChange} />
-            ) : (
-              <HexColorPicker defaultValue={color} onChange={handleChange} />
-            )}
+        {isVisible && (
+          <div className={classes.selectorWrapper}>
+            <div className={classes.indicator}></div>
+            <div className={classes.selector} ref={containerRef}>
+              {types[colorType] === 'RGBA' ? (
+                <RgbaColorPicker defaultValue={color} onChange={handleChange} />
+              ) : types[colorType] === 'HSLA' ? (
+                <HslaColorPicker defaultValue={color} onChange={handleChange} />
+              ) : (
+                <HexColorPicker defaultValue={color} onChange={handleChange} />
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </>
   )
 }
