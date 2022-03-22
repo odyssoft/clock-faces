@@ -1,19 +1,13 @@
 import { makeStyles } from '@mui/styles'
 
-import { Theme } from 'theme'
+import { ColorInputTheme } from './types'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: ColorInputTheme) => ({
   colorInput: {
     position: 'relative',
     maxWidth: '210px',
     boxShadow: 'border-box',
     margin: '5px',
-    // borderCollapse: 'collapse',
-    // borderSpacing: '0',
-    // color: '#333333',
-    // fontSize: '13px',
-    // lineHeight: '20px',
-    // textAlign: 'left',
   },
   colorPreview: {
     position: 'absolute',
@@ -26,10 +20,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   preview: {
     width: '16px',
     height: '16px',
-    boxShadow: 'rgba(0,0,0,.1) 0 0 0 1px inset',
+    boxShadow: 'rgba(0, 0, 0, .1) 0 0 0 1px inset',
     borderRadius: '4px',
     margin: '4px',
-    background: 'white',
+    background: ({ primaryColor }: ColorInputTheme) => primaryColor ?? 'white',
     overflow: 'hidden',
   },
   color: {
@@ -37,13 +31,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'block',
     width: '100%',
     height: '100%',
+    marginTop: '-21px',
+    boxShadow: 'rgba(0, 0, 0, .1) 0 0 0 1px inset',
   },
   selectorWrapper: {
+    top: '100%',
+    left: '0px',
     position: 'absolute',
-    inset: 'auto auto 0px 0px',
     display: 'inline-block',
     zIndex: 999,
-    // top: '100%',
     background: 'rgba(255, 255, 255, .95)',
     filter:
       'drop-shadow(0px 5px 5px rgba(0,0,0,0.05)) drop-shadow(0 1px 3px rgba(0,0,0,0.1))',
@@ -51,13 +47,13 @@ const useStyles = makeStyles((theme: Theme) => ({
       'drop-shadow(0px 5px 5px rgba(0,0,0,0.05)) drop-shadow(0 1px 3px rgba(0,0,0,0.1))',
     borderRadius: '8px',
     fontSize: '12px',
-    margin: '5px',
+    marginTop: '5px',
+    height: '210px',
   },
   indicator: {
     position: 'absolute',
     top: '-8px',
-    left: '50%',
-    transform: 'translateX(-50%)',
+    left: '7px',
     borderStyle: 'solid',
     borderBottomWidth: '8px',
     borderTopWidth: '0px',
@@ -119,14 +115,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const useStylesOld = makeStyles((theme: Theme) => ({
+const useStylesOld = makeStyles((theme: ColorInputTheme) => ({
   wrapper: {
     position: 'relative',
     display: 'inline-flex',
     alignItems: 'center',
     margin: '.25em .5em',
     cursor: 'pointer',
-    color: ({ primaryColor }: Theme) => primaryColor || 'white',
+    color: ({ primaryColor }: ColorInputTheme) => primaryColor || 'white',
   },
   label: {
     flex: 1,
