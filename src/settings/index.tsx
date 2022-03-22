@@ -1,8 +1,9 @@
 import { useTheme } from '@mui/styles'
 import Icon, { Beehive, Close } from '@odyssoft/odyssoft-icons'
-import ColorInput from 'components/colorPicker'
+import ColorInput from 'components/colorInput'
 import Input from 'components/input'
 import React, { useState } from 'react'
+import { Theme } from 'theme'
 
 import useStyles from './styles'
 import { SettingsTheme } from './types'
@@ -15,12 +16,12 @@ const Settings = () => {
   const handlePrimaryColorChange = (e: any) => {
     console.log(e)
   }
-
-  const theme: SettingsTheme = {
-    ...useTheme(),
+  const theme: Theme = useTheme()
+  const settingsTheme: SettingsTheme = {
+    ...theme,
     isMenuShown,
   }
-  const classes = useStyles(theme)
+  const classes = useStyles(settingsTheme)
   /**
    * primaryColor
    * actionColor
@@ -30,7 +31,7 @@ const Settings = () => {
    */
 
   return (
-    <div className={classes.settings}>
+    <>
       <div className={classes.button} onClick={handleClick}>
         <Icon
           icon={Beehive()}
@@ -38,13 +39,24 @@ const Settings = () => {
           conditionIcon={Close()}
         />
       </div>
-      <div className={classes.content}>
-        <ColorInput
-          label={'Primary Color'}
-          onChange={handlePrimaryColorChange}
-        />
+      <div className={classes.settings}>
+        <div className={classes.content}>
+          <div style={{ display: 'block' }}>
+            <ColorInput
+              label={'Primary Color'}
+              onChange={handlePrimaryColorChange}
+            />
+          </div>
+          <div style={{ display: 'block' }}>
+            <Input
+              label={'Test Color'}
+              onChange={({ target: { value } }: any) => console.log({ value })}
+              type={'text'}
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

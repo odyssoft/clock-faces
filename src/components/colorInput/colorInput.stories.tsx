@@ -1,11 +1,11 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import ColorPicker from '.'
+import ColorInput from '../colorInput'
 
 export default {
-  title: 'Color Picker',
-  component: ColorPicker,
+  title: 'Color Input',
+  component: ColorInput,
   argTypes: {
     label: {
       control: 'text',
@@ -15,14 +15,14 @@ export default {
       defaultValue: '',
     },
   },
-} as ComponentMeta<typeof ColorPicker>
+} as ComponentMeta<typeof ColorInput>
 
-const Template: ComponentStory<typeof ColorPicker> = (args) => (
-  <ColorPicker {...args} />
+const Template: ComponentStory<typeof ColorInput> = (args) => (
+  <ColorInput {...args} />
 )
 
-export const _ColorPicker = Template.bind({})
-_ColorPicker.args = {
-  label: 'Color Picker',
+export const _ColorInput = Template.bind({})
+_ColorInput.args = {
+  label: 'Color Input',
   value: '',
 }

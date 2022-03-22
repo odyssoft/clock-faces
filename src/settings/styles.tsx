@@ -5,15 +5,15 @@ const useStyles = makeStyles((theme: SettingsTheme) => ({
   settings: {
     position: 'absolute',
     display: 'block',
-    top: 0,
-    left: ({ isMenuShown }: SettingsTheme) =>
-      `calc(100vw - ${isMenuShown ? 50 : 250}px)`,
+    top: '5px',
+    right: ({ isMenuShown }: SettingsTheme) => (isMenuShown ? '0px' : '-100%'),
+    background: ({ secondaryBackground }: SettingsTheme) => secondaryBackground,
   },
   button: {
     position: 'absolute',
     display: 'block',
     top: 0,
-    left: '-50px',
+    right: 0,
     width: '50px',
     height: '50px',
     cursor: 'pointer',
@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: SettingsTheme) => ({
     padding: '13px',
     fontSize: '1.5rem',
     opacity: 0.25,
+    zIndex: 1,
     '&:hover': {
       opacity: 1,
     },
@@ -28,7 +29,8 @@ const useStyles = makeStyles((theme: SettingsTheme) => ({
   content: {
     position: 'relative',
     display: 'flex',
-    marginTop: '50px',
+    marginTop: '40px',
+    flexDirection: 'column',
   },
 }))
 

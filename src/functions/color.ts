@@ -14,32 +14,15 @@ export const getHSLA = (color: string) => {
   return { a, h, s, l }
 }
 
-export const HEX = (color: string): string => {
-  const isHex = color.startsWith('#')
-  if (isHex) return color
-
-  const colors = color
-    .replace(/ /g, '')
-    .split(',')
-    .map((col: string | number): string => Number(col).toString(16))
-    .join()
-
-  return `#${colors}`
-}
-
 export const HexToRgba = (color: string) => {
   //  @ts-ignore
   const [a, r, g, b] = color
     .match(/([\da-f]{2})([\da-f]{2})([\da-f]{2})/i)
     ?.map((col: string) => parseInt(col, 16))
-  return `rgba(${r}, ${g}, ${b}, 1)`
+  return { r, g, b, a: 1 }
 }
 
-export const RgbaToHsla = (color: string) => {
-  let [r, g, b, a] = color
-    .replace(/rgb.\(|\)/g, '')
-    .split(',')
-    .map((num: string): number => Number(num))
+export const RgbaToHsla = ({ r, g, b, a }: any) => {
   r /= 255
   g /= 255
   b /= 255
@@ -68,19 +51,16 @@ export const RgbaToHsla = (color: string) => {
     h /= 6
   }
 
-  return `hsla(${Math.floor(h * 360)}, ${Math.floor(s * 100)}%, ${Math.floor(
-    l * 100
-  )}%, ${a ?? 1})`
+  return {
+    h: Math.floor(h * 360),
+    s: Math.floor(s * 100),
+    l: Math.floor(l * 100),
+    a: a ?? 1,
+  }
 }
 
-export const HslaToHex = (color: string) => {
-  let [h, s, l] = color
-    .replace(/hsl.\(|\)|%/g, '')
-    .split(',')
-    .map((num: string): number => Number(num))
-
+export const HslaToHex = ({ h, s, l }: any) => {
   l /= 100
-
   const a = (s * Math.min(l, 1 - l)) / 100
   const f = (n: number) => {
     const k = (n + h / 30) % 12
