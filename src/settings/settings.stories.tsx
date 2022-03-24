@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
+import { Theme } from '../theme'
 import Settings from './'
+import { useTheme } from '@mui/styles'
 
 export default {
   title: 'Settings',
@@ -17,4 +19,7 @@ export default {
   },
 } as ComponentMeta<typeof Settings>
 
-export const _Settings = () => <Settings />
+export const _Settings = () => {
+  const [theme, setTheme] = useState<Theme>(useTheme())
+  return <Settings theme={theme} setTheme={setTheme} />
+}

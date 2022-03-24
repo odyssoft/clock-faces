@@ -1,16 +1,17 @@
 import { ThemeProvider, useTheme } from '@mui/styles'
 import React from 'react'
 
-import createTheme, { Theme } from 'theme'
 import useQueryString from 'hooks/useQueryString'
 import Settings from 'settings'
+import createTheme, { Theme } from 'theme'
 
 import useStyles from './styles'
+import { useState } from 'react'
 
 const App = () => {
-  const query: any = useQueryString()
+  const [theme, setTheme] = useState<Theme>(createTheme())
 
-  const theme: Theme = createTheme()
+  const query: any = useQueryString()
 
   const classes = useStyles({
     ...theme,
@@ -20,7 +21,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.container}>
-        <Settings />
+        <Settings theme={theme} setTheme={setTheme} />
         <div className={classes.centered}></div>
       </div>
     </ThemeProvider>

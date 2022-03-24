@@ -31,7 +31,8 @@ const useStyles = makeStyles((theme: Theme) => ({
       WebkitTransition: 'box-shadow 200ms ease-out,opacity 200ms ease-out',
       MozTransition: 'box-shadow 200ms ease-out,opacity 200ms ease-out',
       transition: 'box-shadow 200ms ease-out,opacity 200ms ease-out',
-      boxShadow: ({ smallInsetShadow }: Theme) => smallInsetShadow,
+      boxShadow: ({ isDarkMode }: Theme) =>
+        `rgba(${isDarkMode ? '255, 255, 255' : '0, 0, 0'}, .1) 0 0 0 1px inset`,
       borderRadius: '4px',
       lineHeight: '20px',
       display: 'inline',
@@ -57,11 +58,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     left: '0.1875rem',
     width: '1rem',
     height: '1rem',
-    boxShadow: ({ smallInsetShadow }: Theme) => smallInsetShadow,
+    boxShadow: 'rgba(0, 0, 0, .1) 0 0 0 1px inset',
     cursor: 'pointer',
     borderRadius: '4px',
     margin: '4px',
-    background: 'white',
     overflow: 'hidden',
     '& svg': {
       display: 'block',
@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: 'absolute',
     top: 0,
     borderRadius: '4px',
-    boxShadow: ({ smallInsetShadow }: Theme) => smallInsetShadow,
+    boxShadow: 'rgba(0, 0, 0, .1) 0 0 0 1px inset',
   },
   selectorWrapper: {
     top: '100%',

@@ -10,7 +10,7 @@ import { Theme } from 'theme'
 import useStyles from './styles'
 import { ColorInputProps } from './types'
 
-const ColorInput = ({ label, value }: ColorInputProps) => {
+const ColorInput = ({ label, value, inputChange }: ColorInputProps) => {
   const [color, setColor] = useState<string>(value ?? '')
   const [isRGB, setIsRGB] = useState<boolean>(
     value ? !value.startsWith('#') : false
@@ -21,7 +21,6 @@ const ColorInput = ({ label, value }: ColorInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleClick = () => setIsVisible(!isVisible)
-  const handleInputChange = ({ target: { value } }: any) => setColor(value)
   const handleLabelClick = () => inputRef?.current?.focus()
   const handleToggle = () => {
     if (color.startsWith('#')) {
@@ -35,12 +34,16 @@ const ColorInput = ({ label, value }: ColorInputProps) => {
     setIsRGB(!isRGB)
   }
 
-  const handleChange = (value: any) =>
-    setColor(
-      typeof value === 'string'
-        ? value
-        : `rgba(${value.r}, ${value.g}, ${value.b}, ${value.a})`
-    )
+  const handleChange = (e: any) => {
+    const value =
+      typeof e === 'string'
+        ? e
+        : e.r && e.g && e.b
+        ? `rgba(${e.r}, ${e.g}, ${e.b}, ${e.a})`
+        : e.target.value
+    setColor(value)
+    inputChange(value)
+  }
 
   const theme: Theme = useTheme()
   const classes = useStyles(theme)
@@ -60,7 +63,7 @@ const ColorInput = ({ label, value }: ColorInputProps) => {
 
   return (
     <div className={classes.container}>
-      <input ref={inputRef} value={color} onChange={handleInputChange} />
+      <input ref={inputRef} value={color} onChange={handleChange} />
       <label onClick={handleLabelClick}>{label}</label>
       <div className={classes.preview} onClick={handleClick}>
         <svg

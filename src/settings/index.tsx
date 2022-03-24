@@ -1,34 +1,20 @@
-import { useTheme } from '@mui/styles'
 import Icon, { Beehive, Close } from '@odyssoft/odyssoft-icons'
 import ColorInput from 'components/colorInput'
-import Input from 'components/input'
 import React, { useState } from 'react'
-import { Theme } from 'theme'
 
 import useStyles from './styles'
-import { SettingsTheme } from './types'
+import { SettingsProps, SettingsTheme } from './types'
 
-const Settings = () => {
+const Settings = ({ setTheme, theme }: SettingsProps) => {
   const [isMenuShown, setIsMenuShown] = useState<boolean>(false)
 
   const handleClick = () => setIsMenuShown(!isMenuShown)
 
-  const handlePrimaryColorChange = (e: any) => {
-    console.log(e)
-  }
-  const theme: Theme = useTheme()
   const settingsTheme: SettingsTheme = {
     ...theme,
     isMenuShown,
   }
   const classes = useStyles(settingsTheme)
-  /**
-   * primaryColor
-   * actionColor
-   * primaryBackground
-   * secondaryColor
-   * secondaryBackground
-   */
 
   return (
     <>
@@ -41,19 +27,16 @@ const Settings = () => {
       </div>
       <div className={classes.settings}>
         <div className={classes.content}>
-          <div style={{ display: 'block' }}>
+          {Object.keys(theme).map((key: string) => (
             <ColorInput
-              label={'Primary Color'}
-              onChange={handlePrimaryColorChange}
+              key={key}
+              label={key}
+              value={String(theme[key])}
+              inputChange={(value: string) =>
+                setTheme({ ...theme, [key]: value })
+              }
             />
-          </div>
-          <div style={{ display: 'block' }}>
-            <Input
-              label={'Test Color'}
-              onChange={({ target: { value } }: any) => console.log({ value })}
-              type={'text'}
-            />
-          </div>
+          ))}
         </div>
       </div>
     </>
