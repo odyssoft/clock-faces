@@ -1,22 +1,22 @@
 import { ThemeProvider, useTheme } from '@mui/styles'
 import React, { useEffect } from 'react'
 
-import useQueryString from 'hooks/useQueryString'
-import Settings from 'settings'
+import Settings from './settings'
 import createTheme, { Theme } from 'theme'
 
 import useStyles from './styles'
 import { useState } from 'react'
 
 const App = () => {
+  const [customBackground, setCustomBackground] = useState<string>(
+    'rgba(25, 25, 30, .75)'
+  )
   const [theme, setTheme] = useState<Theme>(createTheme())
   const [clock, setClock] = useState<React.ReactNode>()
 
-  const query: any = useQueryString()
-
   const classes = useStyles({
     ...theme,
-    customBackground: query.background ?? null,
+    customBackground,
   })
 
   useEffect(() => {
@@ -28,7 +28,12 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.container}>
-        <Settings theme={theme} setTheme={setTheme} />
+        <Settings
+          background={customBackground}
+          theme={theme}
+          setBackground={setCustomBackground}
+          setTheme={setTheme}
+        />
         <div className={classes.centered}>{clock}</div>
       </div>
     </ThemeProvider>

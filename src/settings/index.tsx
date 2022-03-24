@@ -5,7 +5,12 @@ import React, { useState } from 'react'
 import useStyles from './styles'
 import { SettingsProps, SettingsTheme } from './types'
 
-const Settings = ({ setTheme, theme }: SettingsProps) => {
+const Settings = ({
+  background,
+  setBackground,
+  setTheme,
+  theme,
+}: SettingsProps) => {
   const [isMenuShown, setIsMenuShown] = useState<boolean>(false)
 
   const handleClick = () => setIsMenuShown(!isMenuShown)
@@ -27,6 +32,11 @@ const Settings = ({ setTheme, theme }: SettingsProps) => {
       </div>
       <div className={classes.settings}>
         <div className={classes.content}>
+          <ColorInput
+            label={'Background Color'}
+            value={background}
+            inputChange={(value: string) => setBackground(value)}
+          />
           {Object.keys(theme).map((key: string) => (
             <ColorInput
               key={key}

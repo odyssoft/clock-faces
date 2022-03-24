@@ -40,7 +40,7 @@ const ColorInput = ({ label, value, inputChange }: ColorInputProps) => {
         ? e
         : e.r && e.g && e.b
         ? `rgba(${e.r}, ${e.g}, ${e.b}, ${e.a})`
-        : e.target.value
+        : e?.target?.value || ''
     setColor(value)
     inputChange(value)
   }
