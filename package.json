@@ -5,6 +5,9 @@
   "main": "src/index.tsx",
   "scripts": {
     "test": "jest",
+    "create": "webpack",
+    "start": "webpack serve --open --stats-error-details",
+    "build": "webpack --mode production",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -30,9 +33,10 @@
   "homepage": "https://github.com/seannhewitson/react-clock-faces#readme",
   "dependencies": {
     "@mui/styles": "^5.5.1",
-    "core-js": "^3.21.1",
+    "@odyssoft/odyssoft-icons": "^1.0.5",
     "moment": "^2.29.1",
     "react": "^17.0.2",
+    "react-colorful": "^5.5.1",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {

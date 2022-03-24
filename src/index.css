@@ -45,6 +45,14 @@ section, svg, g, circle {
   -webkit-transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.react-colorful, .react-colorful * {
+  transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  -moz-transition: none;
+  -webkit-transition: none;
+}
+
 svg g {
   cursor: pointer;
 }
@@ -76,7 +84,7 @@ body {
   background-size: 250vw, 250vh;
   color: white;
   animation: gradient 15s ease infinite;
-  overflow: hidden;
+  /* overflow: hidden; */
   -ms-overflow-style: none; /* IE 11 */
   scrollbar-width: none; /* Firefox 64 */
   overflow: -moz-scrollbars-none;

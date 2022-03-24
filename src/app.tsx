@@ -1,26 +1,30 @@
-import { useTheme } from '@mui/styles'
+import { ThemeProvider, useTheme } from '@mui/styles'
 import React from 'react'
 
-import { Theme } from 'theme'
-import useStyles from './styles'
 import useQueryString from 'hooks/useQueryString'
+import Settings from 'settings'
+import createTheme, { Theme } from 'theme'
 
-interface AppTheme extends Theme {
-  customBackground?: string
-}
+import useStyles from './styles'
+import { useState } from 'react'
 
 const App = () => {
+  const [theme, setTheme] = useState<Theme>(createTheme())
+
   const query: any = useQueryString()
-  const theme: AppTheme = useTheme()
+
   const classes = useStyles({
     ...theme,
     customBackground: query.background ?? null,
   })
 
   return (
-    <div className={classes.container}>
-      <div className={classes.centered}></div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className={classes.container}>
+        <Settings theme={theme} setTheme={setTheme} />
+        <div className={classes.centered}></div>
+      </div>
+    </ThemeProvider>
   )
 }
 

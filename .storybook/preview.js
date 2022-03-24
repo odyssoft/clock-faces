@@ -1,3 +1,8 @@
+import React from 'react'
+import { ThemeProvider } from '@mui/styles'
+
+import createTheme from '../src/theme'
+
 import '../src/index.css'
 
 export const parameters = {
@@ -8,5 +13,23 @@ export const parameters = {
       date: /Date$/,
     },
   },
-  layout: 'fullscreen'
+  layout: 'fullscreen',
 }
+
+const Wrapper = ({ children }) => {
+  const theme = createTheme()
+  
+  return (
+    <ThemeProvider theme={theme}>
+      {children}
+    </ThemeProvider>
+  )
+}
+
+export const decorators = [
+  (Story) => (
+    <Wrapper>
+      <Story />
+    </Wrapper>
+  )
+]

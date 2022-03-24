@@ -7,6 +7,7 @@ module.exports = ({ config }) => {
     include: [SRC_PATH],
     use: []
   });
+  config.resolve.modules.push(path.resolve(__dirname, '../src/'))
   config.resolve.extensions.push('.ts', '.tsx');
   return config
 }
