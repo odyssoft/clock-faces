@@ -13,7 +13,7 @@ const BarClock = () => {
 
   return (
     <div className={classes.clock}>
-      <Hand className={classes.hand} hook={useDay} unit={'days'} />
+      {/* <Hand className={classes.hand} hook={useDay} unit={'date'} /> */}
       <Hand className={classes.hand} hook={useHour} unit={'hours'} />
       <Hand className={classes.hand} hook={useMinute} unit={'minutes'} />
       <Hand className={classes.hand} hook={useSecond} unit={'seconds'} />
