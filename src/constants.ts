@@ -9,7 +9,7 @@ export const max: {
   minutes: 60,
   hours: 24,
   twelveHours: 12,
-  days: (): number => moment().daysInMonth(),
+  date: (): number => moment().daysInMonth(),
   weeks: 52,
   months: 12,
 }

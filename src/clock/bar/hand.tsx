@@ -11,9 +11,11 @@ const Hand = ({ className, hook, unit }: HandProps) => {
   const [activeLeft, setActiveLeft] = useState<number>(0)
   const [activeRight, setActiveRight] = useState<number>(0)
 
-  const options = (n = `${max[unit]}`) => ({
+  const options = (
+    n = `${typeof max[unit] === 'function' ? max[unit]() : max[unit]}`
+  ) => ({
     left: numbers.slice(0, parseInt(n[0]) + 1),
-    right: n[1] === '0' ? numbers : numbers.slice(0, parseInt(n[1]) + 1),
+    right: numbers,
   })
 
   useEffect(() => {
