@@ -1,40 +1,38 @@
-import { ThemeProvider, useTheme } from '@mui/styles'
+import { ThemeProvider } from '@mui/styles'
 import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import createTheme from 'theme'
+import { RootState } from 'store/reducer'
 
 import Settings from './settings'
-import createTheme, { Theme } from 'theme'
-
 import useStyles from './styles'
-import { useState } from 'react'
+import { setTheme } from 'store/actions'
 
 const App = () => {
-  const [customBackground, setCustomBackground] = useState<string>(
-    'rgba(25, 25, 30, .75)'
+  const { component: clockFace } = useSelector(
+    ({ activeFace }: RootState) => activeFace
   )
-  const [theme, setTheme] = useState<Theme>(createTheme())
-  const [clock, setClock] = useState<React.ReactNode>()
+  const background = useSelector(({ background }: RootState) => background)
+  const theme = useSelector(({ theme }: RootState) => theme)
+
+  const dispatch = useDispatch()
+  const defaultTheme = createTheme()
 
   const classes = useStyles({
     ...theme,
-    customBackground,
+    background,
   })
 
   useEffect(() => {
-    //  set active clock to default for now
-    const Clock = require('clock/bar').default
-    setClock(<Clock />)
+    dispatch(setTheme(defaultTheme))
   }, [])
 
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.container}>
-        <Settings
-          background={customBackground}
-          theme={theme}
-          setBackground={setCustomBackground}
-          setTheme={setTheme}
-        />
-        <div className={classes.centered}>{clock}</div>
+        <Settings />
+        <div className={classes.centered}>{clockFace}</div>
       </div>
     </ThemeProvider>
   )
