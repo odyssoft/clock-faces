@@ -13,6 +13,9 @@ const Settings = () => {
   const [isMenuShown, setIsMenuShown] = useState<boolean>(false)
 
   const background = useSelector(({ background }: RootState) => background)
+  const settings = useSelector(
+    ({ activeFace: { settings } }: RootState) => settings
+  )
   const theme = useSelector(({ theme }: RootState) => theme)
 
   const dispatch = useDispatch()
@@ -38,6 +41,7 @@ const Settings = () => {
       </div>
       <div className={classes.settings}>
         <div className={classes.content}>
+          {settings ?? null}
           <ColorInput
             label={'Background Color'}
             value={background}

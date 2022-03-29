@@ -8,26 +8,10 @@ export const getFace = (name: string): Face => {
     component: <ClockFace />,
   }
 
-  const getIfExists = (key: string) => {
-    try {
-      return require(`faces/${name}`)[key]
-    } catch (e) {
-      try {
-        return require(`faces/${name}/${key}`).default
-      } catch (er) {
-        try {
-          return require(`faces/${name}/${key}`)[key]
-        } catch (err) {
-          return null
-        }
-      }
-    }
-  }
+  const Settings = require(`faces/${name}/settings`).default
+  const config = require(`faces/${name}/config`).default
 
-  const settings = getIfExists('settings')
-  const config = getIfExists('config')
-
-  settings && (face.settings = settings)
+  Settings && (face.settings = <Settings />)
   config && (face.config = config)
 
   return face
