@@ -1,19 +1,25 @@
 import Icon, { Beehive, Close } from '@odyssoft/odyssoft-icons'
 import ColorInput from 'components/colorInput'
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setBackground, setTheme } from 'store/actions'
+import { RootState } from 'store/reducer'
+import { Theme } from 'theme'
 
 import useStyles from './styles'
-import { SettingsProps, SettingsTheme } from './types'
+import { SettingsTheme } from './types'
 
-const Settings = ({
-  background,
-  setBackground,
-  setTheme,
-  theme,
-}: SettingsProps) => {
+const Settings = () => {
   const [isMenuShown, setIsMenuShown] = useState<boolean>(false)
 
+  const background = useSelector(({ background }: RootState) => background)
+  const theme = useSelector(({ theme }: RootState) => theme)
+
+  const dispatch = useDispatch()
+
+  const handleBackground = (value: string) => dispatch(setBackground(value))
   const handleClick = () => setIsMenuShown(!isMenuShown)
+  const handleTheme = (value: Theme) => dispatch(setTheme(value))
 
   const settingsTheme: SettingsTheme = {
     ...theme,
@@ -35,7 +41,7 @@ const Settings = ({
           <ColorInput
             label={'Background Color'}
             value={background}
-            inputChange={(value: string) => setBackground(value)}
+            inputChange={handleBackground}
           />
           {Object.keys(theme).map((key: string) => (
             <ColorInput
@@ -43,7 +49,7 @@ const Settings = ({
               label={key}
               value={String(theme[key])}
               inputChange={(value: string) =>
-                setTheme({ ...theme, [key]: value })
+                handleTheme({ ...theme, [key]: value })
               }
             />
           ))}

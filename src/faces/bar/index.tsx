@@ -3,11 +3,12 @@ import { useDay, useHour, useMinute, useSecond } from 'hooks/useMoment'
 import React from 'react'
 
 import { Theme } from 'theme'
-import Hand from './hand'
+import { FaceProps } from 'types'
 
+import Hand from './hand'
 import useStyles from './styles'
 
-const BarClock = () => {
+const BarClock = ({ config }: FaceProps) => {
   const theme: Theme = useTheme()
   const classes = useStyles(theme)
 

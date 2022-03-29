@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: SettingsTheme) => ({
     position: 'absolute',
     display: 'block',
     top: '5px',
-    right: ({ isMenuShown }: SettingsTheme) => (isMenuShown ? '0px' : '-100%'),
+    right: ({ isMenuShown }: SettingsTheme) => (isMenuShown ? '5px' : '-100%'),
     background: ({ secondaryBackground }: SettingsTheme) => secondaryBackground,
   },
   button: {

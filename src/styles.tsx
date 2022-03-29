@@ -7,8 +7,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     width: '100vw',
     height: '100vh',
-    background: ({ customBackground }: any = theme) =>
-      customBackground ?? 'rgba(25, 25, 30, .75)',
+    background: ({ background }: any = theme) => background,
     flexDirection: 'column',
     justifyContent: 'center',
   },
