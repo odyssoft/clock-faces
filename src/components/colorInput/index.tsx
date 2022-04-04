@@ -42,7 +42,7 @@ const ColorInput = ({ label, value, inputChange }: ColorInputProps) => {
         ? `rgba(${e.r}, ${e.g}, ${e.b}, ${e.a})`
         : e?.target?.value || ''
     setColor(value)
-    inputChange(value)
+    inputChange && inputChange(value)
   }
 
   const theme: Theme = useTheme()

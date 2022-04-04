@@ -34,9 +34,7 @@
   "dependencies": {
     "@mui/styles": "^5.5.1",
     "@odyssoft/odyssoft-icons": "^1.0.5",
-    "fs": "^0.0.1-security",
     "moment": "^2.29.1",
-    "path": "^0.12.7",
     "react": "^17.0.2",
     "react-colorful": "^5.5.1",
     "react-dom": "^17.0.2",
